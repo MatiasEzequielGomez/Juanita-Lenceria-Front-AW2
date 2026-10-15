@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Iniciar sesión | Juanita Lencería</title>
+</head>
+
+<body class="bg-gray-50">
+
+    <main class="min-h-screen flex items-center justify-center px-4">
+
+        <section class="w-full max-w-md border rounded-lg shadow-sm p-8 bg-white">
+
+            <div class="text-center mb-8">
+                <img src="../../assets/images/Logo-Juanita.ico" alt="Juanita Lencería"
+                    class="w-24 h-24 object-contain mx-auto mb-4">
+
+                <h1 class="text-2xl font-bold">
+                    Iniciar sesión
+                </h1>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="mb-4">
+                    <label for="email" class="block mb-2 font-medium">
+                        Correo electrónico
+                    </label>
+
+                    <input type="email" id="email" name="email" required class="w-full border rounded-lg px-4 py-2"
+                        placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block mb-2 font-medium">
+                        Contraseña
+                    </label>
+
+                    <input type="password" id="password" name="password" required
+                        class="w-full border rounded-lg px-4 py-2" placeholder="Ingrese su contraseña">
+                </div>
+
+                <button type="submit" id="loginBtn"
+                    class="w-full border rounded-lg px-4 py-2 font-semibold hover:bg-gray-100">
+                    Iniciar sesión
+                </button>
+
+            </form>
+            <p class="text-center mt-6">
+                ¿No tienes una cuenta?
+
+                <a href="../registro/registro.html" class="font-semibold underline">
+                    Crear cuenta
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="./login.js"></script>
+</body>
+
+</html>
