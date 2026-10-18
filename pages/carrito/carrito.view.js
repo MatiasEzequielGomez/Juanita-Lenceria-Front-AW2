@@ -10,13 +10,14 @@ export const renderCarrito = (app) => {
             <div class="mb-6">
                 <button
                     id="btn-volver-home"
-                    class="px-4 py-2 border rounded-md"
+                    class="juanita-button"
                 >
                     Volver al inicio
                 </button>
             </div>
 
             <div class="mb-8">
+
                 <label
                     for="direccion"
                     class="block mb-2 font-semibold"
@@ -27,9 +28,10 @@ export const renderCarrito = (app) => {
                 <input
                     id="direccion"
                     type="text"
-                    class="w-full border rounded-md p-3"
+                    class="juanita-input w-full"
                     placeholder="Ingrese la dirección de entrega"
                 >
+
             </div>
 
             <div id="carrito-container"></div>
@@ -58,15 +60,18 @@ export const mostrarProductosCarrito = (
     carritoContainer.innerHTML = carrito
         .map(item => `
             <article
-                class="flex gap-6 border rounded-lg p-4 mb-4"
+                class="juanita-cart-item flex gap-6 mb-4 items-center"
             >
+
                 <img
                     src="../../assets/images/${item.imagen}"
                     alt="${item.nombre}"
                     class="w-32 h-32 object-contain"
                 >
 
-                <div>
+
+                <div class="flex-1">
+
                     <h2 class="text-xl font-semibold">
                         ${item.nombre}
                     </h2>
@@ -83,7 +88,17 @@ export const mostrarProductosCarrito = (
                         Subtotal:
                         $${item.precio * item.cantidad}
                     </p>
+
                 </div>
+
+
+                <button
+                    class="btn-eliminar-carrito juanita-button"
+                    data-id="${item.id}"
+                >
+                    Eliminar
+                </button>
+
             </article>
         `)
         .join("");
@@ -99,16 +114,27 @@ export const mostrarResumenCarrito = (
     carritoContainer.innerHTML += `
         <div class="mt-8 text-right">
 
-            <p class="text-2xl font-bold mb-4">
+            <p class="juanita-total mb-4">
                 Total: $${totalCarrito}
             </p>
 
-            <button
-                id="btn-comprar"
-                class="px-6 py-3 bg-black text-white rounded-md"
-            >
-                Comprar
-            </button>
+            <div class="flex justify-end gap-3">
+
+                <button
+                    id="btn-cancelar-compra"
+                    class="juanita-button"
+                >
+                    Cancelar compra
+                </button>
+
+                <button
+                    id="btn-comprar"
+                    class="juanita-button"
+                >
+                    Comprar
+                </button>
+
+            </div>
 
         </div>
     `;

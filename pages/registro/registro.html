@@ -3,123 +3,125 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <link rel="stylesheet" href="../../styles/main.css">
+
+    <link rel="icon" type="image/x-icon" href="../../assets/images/Logo-Juanita.ico">
     <title>Crear cuenta | Juanita Lencería</title>
 </head>
 
-<body class="bg-gray-50">
+
+<body>
 
     <main class="min-h-screen flex items-center justify-center px-4 py-8">
 
-        <section class="w-full max-w-md border rounded-lg shadow-sm p-8 bg-white">
+        <section class="juanita-auth-card w-full max-w-md">
 
             <div class="text-center mb-8">
-                <img
-                    src="../../assets/images/Logo-Juanita.ico"
-                    alt="Juanita Lencería"
-                    class="w-24 h-24 object-contain mx-auto mb-4"
-                >
 
-                <h1 class="text-2xl font-bold">
+                <a href="../../index.html">
+                    <img src="../../assets/images/Logo-Juanita.ico" alt="Juanita Lencería"
+                        class="w-24 h-24 object-contain mx-auto mb-4">
+                </a>
+
+
+                <h1 class="juanita-auth-title">
                     Crear cuenta
                 </h1>
+
             </div>
+
 
             <form id="registroForm">
 
                 <div class="mb-4">
-                    <label for="nombre" class="block mb-2 font-medium">
+
+                    <label for="nombre" class="block mb-2 font-semibold">
                         Nombre
                     </label>
 
-                    <input
-                        type="text"
-                        id="nombre"
-                        required
-                        class="w-full border rounded-lg px-4 py-2"
-                    >
+                    <input type="text" id="nombre" required class="juanita-input w-full"
+                        placeholder="Ingrese su nombre">
+
                 </div>
 
+
                 <div class="mb-4">
-                    <label for="apellido" class="block mb-2 font-medium">
+
+                    <label for="apellido" class="block mb-2 font-semibold">
                         Apellido
                     </label>
 
-                    <input
-                        type="text"
-                        id="apellido"
-                        required
-                        class="w-full border rounded-lg px-4 py-2"
-                    >
+                    <input type="text" id="apellido" required class="juanita-input w-full"
+                        placeholder="Ingrese su apellido">
+
                 </div>
 
+
                 <div class="mb-4">
-                    <label for="email" class="block mb-2 font-medium">
+
+                    <label for="email" class="block mb-2 font-semibold">
                         Correo electrónico
                     </label>
 
-                    <input
-                        type="email"
-                        id="email"
-                        required
-                        class="w-full border rounded-lg px-4 py-2"
-                    >
+                    <input type="email" id="email" required class="juanita-input w-full"
+                        placeholder="ejemplo@correo.com">
+
                 </div>
 
+
                 <div class="mb-4">
-                    <label for="telefono" class="block mb-2 font-medium">
+
+                    <label for="telefono" class="block mb-2 font-semibold">
                         Teléfono
                     </label>
 
-                    <input
-                        type="text"
-                        id="telefono"
-                        required
-                        class="w-full border rounded-lg px-4 py-2"
-                    >
+                    <input type="text" id="telefono" required class="juanita-input w-full"
+                        placeholder="Ingrese su teléfono">
+
                 </div>
 
+
                 <div class="mb-6">
-                    <label for="password" class="block mb-2 font-medium">
+
+                    <label for="password" class="block mb-2 font-semibold">
                         Contraseña
                     </label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        required
-                        class="w-full border rounded-lg px-4 py-2"
-                    >
+                    <input type="password" id="password" required class="juanita-input w-full"
+                        placeholder="Ingrese una contraseña">
+
                 </div>
 
-                <button
-                    type="submit"
-                    class="w-full border rounded-lg px-4 py-2 font-semibold hover:bg-gray-100"
-                >
+
+                <button type="submit" class="juanita-button w-full">
                     Crear cuenta
                 </button>
 
             </form>
 
+
             <p class="text-center mt-6">
+
                 ¿Ya tienes una cuenta?
 
-                <a
-                    href="../login/login.html"
-                    class="font-semibold underline"
-                >
+                <a href="../login/login.html" class="juanita-auth-link">
                     Iniciar sesión
                 </a>
+
             </p>
 
         </section>
 
     </main>
 
+
     <script type="module" src="./registro.js"></script>
+
 </body>
 
 </html>

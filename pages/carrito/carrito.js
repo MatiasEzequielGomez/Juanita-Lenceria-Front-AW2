@@ -29,6 +29,7 @@ export const cargarCarrito = (app) => {
     const direccion = document.querySelector("#direccion");
 
     let btnComprar = null;
+    let btnCancelarCompra = null;
 
 
     // Mostrar carrito
@@ -57,6 +58,10 @@ export const cargarCarrito = (app) => {
 
 
         btnComprar = document.querySelector("#btn-comprar");
+
+        btnCancelarCompra = document.querySelector(
+            "#btn-cancelar-compra"
+        );
     }
 
 
@@ -64,8 +69,10 @@ export const cargarCarrito = (app) => {
     configurarEventosCarrito({
         btnVolverHome,
         btnComprar,
+        btnCancelarCompra,
         direccion,
-        carrito
+        carrito,
+        carritoContainer
     });
 };
 

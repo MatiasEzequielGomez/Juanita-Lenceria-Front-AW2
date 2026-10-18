@@ -1,58 +1,100 @@
 export const productCard = (producto) => {
     return `
-        <article class="border rounded-lg p-4 shadow-sm">
+        <article class="juanita-card flex flex-col h-full">
+
             <img
                 src="./assets/images/${producto.imagen}"
                 alt="${producto.nombre}"
-                class="w-full h-96 object-contain rounded-md"
+                class="w-full h-96 object-contain"
             >
 
-            <h2 class="text-xl font-semibold mt-4">
+
+            <h2 class="juanita-card-title text-xl mt-4">
                 ${producto.nombre}
             </h2>
 
-            <p class="text-gray-600 mt-2">
+
+            <p class="juanita-text-secondary mt-2">
                 ${producto.descripcion}
             </p>
 
-            <p class="text-lg font-bold mt-3">
+
+            <p class="juanita-card-price mt-3">
                 $${producto.precio}
             </p>
 
-            <p class="text-sm mt-2">
+
+            <p class="juanita-stock text-sm mt-2">
                 Stock: ${producto.stock}
             </p>
 
-            <p class="text-sm font-semibold mt-1
-                ${producto.disponible ? "text-green-600" : "text-red-600"}">
-                ${producto.disponible ? "Disponible" : "Sin stock"}
+
+            <p class="
+                text-sm
+                font-semibold
+                mt-1
+                ${producto.disponible
+                    ? "juanita-available"
+                    : "text-red-700"
+                }
+            ">
+                ${producto.disponible
+                    ? "Disponible"
+                    : "Sin stock"
+                }
             </p>
+
 
             ${
                 producto.disponible
                     ? `
-                        <div class="flex items-center justify-center gap-4 mt-4">
+                        <div class="flex items-center justify-center gap-4 mt-auto pt-4">
+
                             <button
-                                class="btn-restar border rounded-lg px-3 py-1"
+                                class="
+                                    btn-restar
+                                    w-9
+                                    h-9
+                                    border
+                                    border-[#b49b28]
+                                    rounded-full
+                                    font-bold
+                                    hover:bg-[#e4c63b]
+                                    transition-colors
+                                "
                                 data-id="${producto.id}"
                             >
                                 -
                             </button>
 
-                            <span class="cantidad-producto">
+
+                            <span class="cantidad-producto font-semibold">
                                 0
                             </span>
 
+
                             <button
-                                class="btn-sumar border rounded-lg px-3 py-1"
+                                class="
+                                    btn-sumar
+                                    w-9
+                                    h-9
+                                    border
+                                    border-[#b49b28]
+                                    rounded-full
+                                    font-bold
+                                    hover:bg-[#e4c63b]
+                                    transition-colors
+                                "
                                 data-id="${producto.id}"
                             >
                                 +
                             </button>
+
                         </div>
 
+
                         <button
-                            class="btn-agregar-carrito w-full mt-4 px-4 py-2 border rounded-lg"
+                            class="btn-agregar-carrito juanita-button w-full mt-4"
                             data-id="${producto.id}"
                         >
                             Agregar al carrito
@@ -60,13 +102,31 @@ export const productCard = (producto) => {
                     `
                     : `
                         <button
-                            class="w-full mt-4 px-4 py-2 border rounded-lg opacity-50 cursor-not-allowed"
+                            class="
+                                w-full
+                                mt-auto
+                                pt-4
+                            "
                             disabled
                         >
-                            Sin stock
+                            <span
+                                class="
+                                    block
+                                    w-full
+                                    px-4
+                                    py-2
+                                    bg-gray-300
+                                    text-gray-500
+                                    rounded-xl
+                                    cursor-not-allowed
+                                "
+                            >
+                                Sin stock
+                            </span>
                         </button>
                     `
             }
+
         </article>
     `;
 };

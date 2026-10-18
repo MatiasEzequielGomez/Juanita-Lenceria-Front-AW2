@@ -1,11 +1,17 @@
 import { crearVenta } from "../../services/ventas.services.js";
 import { obtenerUsuario } from "../../utils/sessionStorage.utils.js";
+import {
+    eliminarProductoDelCarrito,
+    vaciarCarrito
+} from "../../utils/carrito.utils.js";
 
 export const configurarEventosCarrito = ({
     btnVolverHome,
     btnComprar,
+    btnCancelarCompra,
     direccion,
-    carrito
+    carrito,
+    carritoContainer
 }) => {
 
     // Volver al inicio
@@ -13,7 +19,30 @@ export const configurarEventosCarrito = ({
         window.location.href = "../../index.html";
     });
 
+    // Eliminar producto del carrito
+    carritoContainer.addEventListener("click", (event) => {
 
+        const btnEliminar = event.target.closest(".btn-eliminar-carrito");
+
+        if (!btnEliminar) {
+            return;
+        }
+
+        const idProducto = Number(btnEliminar.dataset.id);
+
+        eliminarProductoDelCarrito(idProducto);
+
+        window.location.reload();
+    });
+
+    // Cancelar compra
+    if (btnCancelarCompra) {
+        btnCancelarCompra.addEventListener("click", () => {
+            vaciarCarrito();
+
+            window.location.reload();
+        });
+    }
     // Realizar compra
     if (btnComprar) {
         btnComprar.addEventListener("click", async () => {
@@ -45,11 +74,10 @@ export const configurarEventosCarrito = ({
                 }))
             };
 
-
             try {
                 const nuevaVenta = await crearVenta(venta);
 
-                localStorage.removeItem("carrito");
+                vaciarCarrito();
 
                 alert(
                     `Compra realizada correctamente. Venta N° ${nuevaVenta.id}`

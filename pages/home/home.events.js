@@ -46,13 +46,17 @@ export const configurarEventosHome = ({
         boton.addEventListener("click", () => {
             const categoria = boton.dataset.categoria;
 
-            const productosFiltrados = productos.filter(
-                producto => producto.categoria === categoria
-            );
+            const productosFiltrados = categoria === "Todos"
+                ? productos
+                : productos.filter(
+                    producto => producto.categoria === categoria
+                );
 
             cambiarTitulo(
                 tituloProductos,
-                categoria
+                categoria === "Todos"
+                    ? "Todos los productos"
+                    : categoria
             );
 
             mostrarProductos(

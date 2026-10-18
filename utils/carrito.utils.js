@@ -33,3 +33,23 @@ export const agregarProductoAlCarrito = (producto, cantidad) => {
 
     return true;
 };
+export const eliminarProductoDelCarrito = (idProducto) => {
+    const carrito = obtenerDatos(CLAVE_CARRITO);
+
+    const carritoActualizado = carrito.filter(
+        item => item.id !== idProducto
+    );
+
+    guardarDatos(
+        CLAVE_CARRITO,
+        carritoActualizado
+    );
+};
+
+
+export const vaciarCarrito = () => {
+    guardarDatos(
+        CLAVE_CARRITO,
+        []
+    );
+};
