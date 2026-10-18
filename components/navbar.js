@@ -1,9 +1,6 @@
+import { obtenerUsuario } from "../utils/sessionStorage.utils.js";
 export const navbar = () => {
-    const usuarioGuardado = sessionStorage.getItem("usuario");
-
-    const usuario = usuarioGuardado
-        ? JSON.parse(usuarioGuardado)
-        : null;
+    const usuario = obtenerUsuario();
 
     return `
         <nav class="grid grid-cols-1 md:grid-cols-3 items-center gap-4 px-6 py-4 border-b">
@@ -39,9 +36,8 @@ export const navbar = () => {
                     Carrito
                 </button>
 
-                ${
-                    usuario
-                        ? `
+                ${usuario
+            ? `
                             <span class="font-medium">
                                 ${usuario.nombre}
                             </span>
@@ -53,7 +49,7 @@ export const navbar = () => {
                                 Cerrar sesión
                             </button>
                         `
-                        : `
+            : `
                             <button
                                 id="btn-login"
                                 class="px-4 py-2 border rounded-lg"
@@ -61,7 +57,7 @@ export const navbar = () => {
                                 Iniciar sesión
                             </button>
                         `
-                }
+        }
 
             </div>
 

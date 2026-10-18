@@ -1,4 +1,5 @@
 import { loginUsuario } from "../../services/usuarios.services.js";
+import { guardarUsuario } from "../../utils/sessionStorage.utils.js";
 
 const loginForm = document.querySelector("#loginForm");
 const email = document.querySelector("#email");
@@ -13,10 +14,7 @@ loginForm.addEventListener("submit", async (event) => {
             password.value
         );
 
-        sessionStorage.setItem(
-            "usuario",
-            JSON.stringify(datos.usuario)
-        );
+        guardarUsuario(datos.usuario);
 
         alert(datos.mensaje);
 
