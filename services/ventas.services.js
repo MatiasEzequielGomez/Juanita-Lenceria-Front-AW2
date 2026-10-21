@@ -1,7 +1,8 @@
-const API_URL = "http://localhost:3001/ventas";
+import { API_URL } from "./api.js";
 
+const VENTAS_URL = `${API_URL}/ventas`;
 export const crearVenta = async (venta) => {
-    const response = await fetch(API_URL, {
+    const response = await fetch(VENTAS_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

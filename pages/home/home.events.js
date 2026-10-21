@@ -17,8 +17,66 @@ export const configurarEventosHome = ({
     btnCarrito,
     btnLogin,
     btnLogout,
-    tituloProductos
+    tituloProductos,
+    filtroSubcategoria,
+    ordenPrecio
 }) => {
+
+    let categoriaActual = "Todos";
+
+
+    // Aplicar filtros y orden
+    const aplicarFiltros = () => {
+
+        let productosFiltrados = [...productos];
+
+
+        // Filtrar por categoría
+        if (categoriaActual !== "Todos") {
+            productosFiltrados = productosFiltrados.filter(
+                producto => producto.categoria === categoriaActual
+            );
+        }
+
+
+        // Filtrar por subcategoría
+        if (filtroSubcategoria.value !== "Todos") {
+            productosFiltrados = productosFiltrados.filter(
+                producto =>
+                    producto.subcategoria === filtroSubcategoria.value
+            );
+        }
+
+
+        // Ordenar por precio
+        if (ordenPrecio.value === "menor-mayor") {
+            productosFiltrados.sort(
+                (a, b) => a.precio - b.precio
+            );
+        }
+
+
+        if (ordenPrecio.value === "mayor-menor") {
+            productosFiltrados.sort(
+                (a, b) => b.precio - a.precio
+            );
+        }
+
+
+        cambiarTitulo(
+            tituloProductos,
+            categoriaActual === "Todos"
+                ? "Todos los productos"
+                : categoriaActual
+        );
+
+
+        mostrarProductos(
+            productosContainer,
+            productosFiltrados
+        );
+    };
+
 
     // Eventos de las cards de productos
     configurarEventosProductCard(
@@ -29,6 +87,12 @@ export const configurarEventosHome = ({
 
     // Volver a productos destacados
     btnHome.addEventListener("click", () => {
+
+        categoriaActual = "Todos";
+
+        filtroSubcategoria.value = "Todos";
+        ordenPrecio.value = "sin-orden";
+
         cambiarTitulo(
             tituloProductos,
             "Productos destacados"
@@ -43,27 +107,25 @@ export const configurarEventosHome = ({
 
     // Filtrar por categoría
     botonesCategoria.forEach(boton => {
+
         boton.addEventListener("click", () => {
-            const categoria = boton.dataset.categoria;
 
-            const productosFiltrados = categoria === "Todos"
-                ? productos
-                : productos.filter(
-                    producto => producto.categoria === categoria
-                );
+            categoriaActual = boton.dataset.categoria;
 
-            cambiarTitulo(
-                tituloProductos,
-                categoria === "Todos"
-                    ? "Todos los productos"
-                    : categoria
-            );
-
-            mostrarProductos(
-                productosContainer,
-                productosFiltrados
-            );
+            aplicarFiltros();
         });
+    });
+
+
+    // Filtrar por subcategoría
+    filtroSubcategoria.addEventListener("change", () => {
+        aplicarFiltros();
+    });
+
+
+    // Ordenar por precio
+    ordenPrecio.addEventListener("change", () => {
+        aplicarFiltros();
     });
 
 

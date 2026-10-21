@@ -1,7 +1,8 @@
-const API_URL = "http://localhost:3001/usuarios";
+import { API_URL } from "./api.js";
 
+const USUARIOS_URL = `${API_URL}/usuarios`;
 export const loginUsuario = async (email, contraseña) => {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch(`${USUARIOS_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -21,7 +22,7 @@ export const loginUsuario = async (email, contraseña) => {
     return datos;
 };
 export const crearUsuario = async (usuario) => {
-    const response = await fetch(API_URL, {
+    const response = await fetch(USUARIOS_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

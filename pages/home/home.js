@@ -18,12 +18,15 @@ const cargarProductos = async () => {
 
     const productosDestacados = obtenerProductosDestacados(productos);
 
+
     // Renderizar estructura del Home
-    renderHome(app);
+    renderHome(app, productos);
 
 
     // Obtener elementos del DOM
-    const productosContainer = document.querySelector("#productos-container");
+    const productosContainer = document.querySelector(
+        "#productos-container"
+    );
 
     const botonesCategoria = document.querySelectorAll(
         "[data-categoria]"
@@ -37,7 +40,17 @@ const cargarProductos = async () => {
 
     const btnLogout = document.querySelector("#btn-logout");
 
-    const tituloProductos = document.querySelector("#titulo-productos");
+    const tituloProductos = document.querySelector(
+        "#titulo-productos"
+    );
+
+    const filtroSubcategoria = document.querySelector(
+        "#filtro-subcategoria"
+    );
+
+    const ordenPrecio = document.querySelector(
+        "#orden-precio"
+    );
 
 
     // Mostrar productos iniciales
@@ -57,7 +70,9 @@ const cargarProductos = async () => {
         btnCarrito,
         btnLogin,
         btnLogout,
-        tituloProductos
+        tituloProductos,
+        filtroSubcategoria,
+        ordenPrecio
     });
 };
 

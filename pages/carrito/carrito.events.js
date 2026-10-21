@@ -75,13 +75,11 @@ export const configurarEventosCarrito = ({
             };
 
             try {
-                const nuevaVenta = await crearVenta(venta);
+                await crearVenta(venta);
 
                 vaciarCarrito();
 
-                alert(
-                    `Compra realizada correctamente. Venta N° ${nuevaVenta.id}`
-                );
+                alert("Compra realizada correctamente.");
 
                 window.location.href = "../../index.html";
 
