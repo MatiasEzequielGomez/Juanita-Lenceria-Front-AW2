@@ -1,4 +1,8 @@
 import { crearUsuario } from "../../services/usuarios.services.js";
+import {
+  mostrarExito,
+  mostrarError,
+} from "../../utils/alertas.utils.js";
 
 const registroForm = document.querySelector("#registroForm");
 
@@ -9,24 +13,29 @@ const telefono = document.querySelector("#telefono");
 const password = document.querySelector("#password");
 
 registroForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const nuevoUsuario = {
-        nombre: nombre.value,
-        apellido: apellido.value,
-        email: email.value,
-        telefono: telefono.value,
-        contraseña: password.value
-    };
+  const nuevoUsuario = {
+    nombre: nombre.value,
+    apellido: apellido.value,
+    email: email.value,
+    telefono: telefono.value,
+    contraseña: password.value,
+  };
 
-    try {
-        await crearUsuario(nuevoUsuario);
+  try {
+    await crearUsuario(nuevoUsuario);
 
-        alert("Usuario creado correctamente");
+    await mostrarExito(
+      "Usuario creado",
+      "La cuenta fue creada correctamente.",
+    );
 
-        window.location.href = "../login/login.html";
-
-    } catch (error) {
-        alert(error.message);
-    }
+    window.location.href = "../login/login.html";
+  } catch (error) {
+    await mostrarError(
+      "No se pudo crear la cuenta",
+      error.message,
+    );
+  }
 });

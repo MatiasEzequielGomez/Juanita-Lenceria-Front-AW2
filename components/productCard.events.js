@@ -1,14 +1,15 @@
 import { agregarProductoAlCarrito } from "../utils/carrito.utils.js";
 import { obtenerUsuario } from "../utils/sessionStorage.utils.js";
-
+import {
+    mostrarAdvertencia,
+    mostrarExito
+} from "../utils/alertas.utils.js";
 
 export const configurarEventosProductCard = (
     productosContainer,
     productos
 ) => {
-
-    productosContainer.addEventListener("click", (event) => {
-
+    productosContainer.addEventListener("click", async (event) => {
         const btnSumar = event.target.closest(".btn-sumar");
         const btnRestar = event.target.closest(".btn-restar");
         const btnAgregar = event.target.closest(".btn-agregar-carrito");
@@ -19,17 +20,15 @@ export const configurarEventosProductCard = (
             return;
         }
 
-
         const idProducto = Number(boton.dataset.id);
 
         const producto = productos.find(
-            producto => producto.id === idProducto
+            (producto) => producto.id === idProducto
         );
 
         if (!producto) {
             return;
         }
-
 
         const card = boton.closest("article");
 
@@ -39,10 +38,8 @@ export const configurarEventosProductCard = (
 
         let cantidad = Number(cantidadElemento.textContent);
 
-
         // Sumar cantidad
         if (btnSumar) {
-
             if (cantidad < producto.stock) {
                 cantidad++;
                 cantidadElemento.textContent = cantidad;
@@ -51,10 +48,8 @@ export const configurarEventosProductCard = (
             return;
         }
 
-
         // Restar cantidad
         if (btnRestar) {
-
             if (cantidad > 0) {
                 cantidad--;
                 cantidadElemento.textContent = cantidad;
@@ -63,27 +58,28 @@ export const configurarEventosProductCard = (
             return;
         }
 
-
         // Agregar al carrito
         if (btnAgregar) {
-
             const usuario = obtenerUsuario();
 
             if (!usuario) {
-                alert(
-                    "Debe iniciar sesión para agregar productos al carrito."
+                await mostrarAdvertencia(
+                    "Iniciá sesión",
+                    "Debes iniciar sesión para agregar productos al carrito."
                 );
 
                 window.location.href = "./pages/login/login.html";
                 return;
             }
 
-
             if (cantidad === 0) {
-                alert("Seleccione una cantidad.");
+                await mostrarAdvertencia(
+                    "Cantidad requerida",
+                    "Seleccioná una cantidad antes de agregar el producto."
+                );
+
                 return;
             }
-
 
             const agregado = agregarProductoAlCarrito(
                 producto,
@@ -91,15 +87,18 @@ export const configurarEventosProductCard = (
             );
 
             if (!agregado) {
-                alert(
-                    "La cantidad supera el stock disponible."
+                await mostrarAdvertencia(
+                    "Stock insuficiente",
+                    "La cantidad seleccionada supera el stock disponible."
                 );
 
                 return;
             }
 
-
-            alert("Producto agregado al carrito.");
+            await mostrarExito(
+                "Producto agregado",
+                "El producto fue agregado correctamente al carrito."
+            );
 
             cantidadElemento.textContent = 0;
         }
