@@ -32,8 +32,7 @@ export const configurarEventosCarrito = ({
       return;
     }
 
-    const idProducto = Number(btnEliminar.dataset.id);
-
+    const idProducto = btnEliminar.dataset.id;
     eliminarProductoDelCarrito(idProducto);
 
     window.location.reload();
@@ -79,7 +78,6 @@ export const configurarEventosCarrito = ({
       }
 
       const venta = {
-        id_usuario: usuario.id,
         direccion: direccion.value.trim(),
 
         productos: carrito.map((item) => ({

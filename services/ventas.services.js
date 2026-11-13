@@ -1,20 +1,24 @@
 import { API_URL } from "./api.js";
 
 const VENTAS_URL = `${API_URL}/ventas`;
+
 export const crearVenta = async (venta) => {
-    const response = await fetch(VENTAS_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(venta)
-    });
+  const token = localStorage.getItem("token");
 
-    const datos = await response.json();
+  const response = await fetch(VENTAS_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(venta),
+  });
 
-    if (!response.ok) {
-        throw new Error(datos.error);
-    }
+  const datos = await response.json();
 
-    return datos;
+  if (!response.ok) {
+    throw new Error(datos.error);
+  }
+
+  return datos;
 };

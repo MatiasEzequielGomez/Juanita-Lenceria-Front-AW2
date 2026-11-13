@@ -19,6 +19,7 @@ loginForm.addEventListener("submit", async (event) => {
     );
 
     guardarUsuario(datos.usuario);
+    localStorage.setItem("token", datos.token);
 
     await mostrarExito(
       "Inicio de sesión exitoso",

@@ -62,7 +62,7 @@ export const productCard = (producto) => {
                                     hover:bg-[#e4c63b]
                                     transition-colors
                                 "
-                                data-id="${producto.id}"
+                                data-id="${producto._id}"
                             >
                                 -
                             </button>
@@ -85,7 +85,7 @@ export const productCard = (producto) => {
                                     hover:bg-[#e4c63b]
                                     transition-colors
                                 "
-                                data-id="${producto.id}"
+                                data-id="${producto._id}"
                             >
                                 +
                             </button>
@@ -95,7 +95,7 @@ export const productCard = (producto) => {
 
                         <button
                             class="btn-agregar-carrito juanita-button w-full mt-4"
-                            data-id="${producto.id}"
+                            data-id="${producto._id}"
                         >
                             Agregar al carrito
                         </button>
